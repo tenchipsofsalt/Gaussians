@@ -30,11 +30,11 @@ n = 100
 # number of samples to draw for each beta
 n_samples = 5000
 # number of GRVs for each beta
-n_grv = 1000
+n_grv = 100
 
 r = np.random.standard_normal(n)
 
-betas = [0.01, 0.1, 1, 10, 100]
+betas = [0, 0.01, 0.1, 1, 10, 100]
 mats = []
 
 for beta in betas:
@@ -74,13 +74,13 @@ plt.show()
 
 fig, axs = plt.subplots(len(betas), 1)
 fig.suptitle("Sampled GRVs from Various Betas")
-fig.set_size_inches(6, len(betas) * 4 - 2)
+fig.set_size_inches(6, len(betas) * 4 - 5)
 mean = np.zeros(n)
 x = np.arange(0, n)
 
 for i in range(len(betas)):
     grv = np.swapaxes(np.random.multivariate_normal(mean, mats[i], n_grv), 0, 1)
-    axs[i].plot(x, grv, label='beta: ' + str(betas[i]), color=sns.color_palette("viridis")[i], alpha=0.1)
+    axs[i].plot(x, grv, label='beta: ' + str(betas[i]), color=sns.color_palette("viridis")[3], alpha=0.1)
     axs[i].set_ylim((-10, 10))
     axs[i].set_title('beta: ' + str(betas[i]))
 plt.show()
